@@ -25,7 +25,6 @@ public class InitialMenuPanel extends BasePanel implements ActionListener {
         this.controller = controller;
         this.setLayout(new BorderLayout());
         this.downPanel = new JPanel(new GridBagLayout());
-       // this.newgame = new JButton("gioca (prova)");
         this.login = new JButton(Settings.LOGIN_BUTTON());
         this.signIn = new JButton(Settings.SIGN_IN_BUTTON());
         this.quit = new JButton(Settings.QUIT_BUTTON());
@@ -38,8 +37,6 @@ public class InitialMenuPanel extends BasePanel implements ActionListener {
         k.gridy = 0;
         k.insets = new Insets(INSETS, INSETS, INSETS, INSETS);
         k.fill = GridBagConstraints.VERTICAL;
-        /*this.downPanel.add(this.newgame, k);
-        k.gridy++;*/
         this.downPanel.add(this.login, k);
         k.gridy++;
         this.downPanel.add(this.signIn, k);
@@ -47,18 +44,10 @@ public class InitialMenuPanel extends BasePanel implements ActionListener {
         this.downPanel.add(this.quit, k);
         this.downPanel.setOpaque(false);
         this.add(downPanel, BorderLayout.SOUTH);
-        this.login.addAncestorListener(new AncestorListener() {
-            @Override
-            public void ancestorAdded(AncestorEvent ae) {
-                login.requestFocus();
-            }
-
-            @Override
-            public void ancestorRemoved(AncestorEvent event) { }
-
-            @Override
-            public void ancestorMoved(AncestorEvent event) { }
-        });
+        JUtil.setFocus(login);
+        JUtil.setEnterClick(login);
+        JUtil.setEnterClick(signIn);
+        JUtil.setEnterClick(quit);
         repaint();
     }
 
